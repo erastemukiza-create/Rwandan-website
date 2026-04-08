@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plan - Life Cycle</title>
+    <style>
+        body {
+            background-image: url("ten.jpeg");
+            text-align: justify;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h3, p {
+            text-align: center;
+            color: rgb(85, 13, 44);
+            font-size: 30px;
+            text-transform: capitalize;
+        }
+
+        ul {
+            padding: 10px;
+            margin: 0;
+        }
+
+        li {
+            display: inline;
+            margin-right: 75px;
+            font-size: 400%;
+        }
+
+        a {
+             color: cadetblue;
+            cursor: help;
+            text-decoration: none ;
+            position: relative;
+            font-style: oblique;
+        }
+
+        a:hover { text-decoration: underline; }
+
+        /* ── PAGE TITLE SECTION ── */
+        .page-intro {
+            text-align: center;
+            padding: 10px 20px 20px;
+        }
+
+        .page-intro h1 {
+            font-size: 36px;
+            color: rgb(85, 13, 44);
+        }
+
+        .page-intro p {
+            font-size: 16px;
+            color: white;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── SECTION HEADINGS ── */
+        .section-title {
+            text-align: center;
+            color: rgb(85, 13, 44);
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgb(85, 13, 44);
+            padding-bottom: 8px;
+            margin: 30px 20px 20px;
+        }
+
+        /* ── PLAN CARDS GRID ── */
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            padding: 10px 20px 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: rgb(40, 60, 60);
+            border: 2px solid rgb(85, 13, 44);
+            width: 280px;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .card-icon {
+            font-size: 36px;
+            text-align: center;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .card-tag {
+            display: inline-block;
+            background-color: rgb(85, 13, 44);
+            color: white;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 12px;
+        }
+
+        .card-footer {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* ── PLAN FORM ── */
+        .form-section {
+            margin: 10px 20px 30px;
+            background-color: rgb(40, 60, 60);
+            border: 2px solid rgb(85, 13, 44);
+            padding: 24px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background-color: rgb(30, 50, 50);
+            border: 1px solid rgb(85, 13, 44);
+            color: white;
+            padding: 9px 12px;
+            font-size: 13px;
+            font-family: Arial, sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: white;
+        }
+
+        .form-group select option {
+            background-color: rgb(40, 60, 60);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: rgb(85, 13, 44);
+            color: white;
+            border: none;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover { background-color: rgb(120, 20, 65); }
+
+        /* ── MY PLANS TABLE ── */
+        .plans-table-wrap {
+            margin: 10px 20px 30px;
+            overflow-x: auto;
+        }
+
+        .plans-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgb(40, 60, 60);
+            border: 2px solid rgb(85, 13, 44);
+        }
+
+        .plans-table th {
+            background-color: rgb(85, 13, 44);
+            color: white;
+            padding: 11px 14px;
+            text-align: left;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plans-table td {
+            padding: 11px 14px;
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            border-bottom: 1px solid rgba(85,13,44,0.35);
+        }
+
+        .plans-table tr:hover td {
+            background-color: rgba(85,13,44,0.2);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .status-done     { background-color: rgb(20,80,50);  color: #7ecba0; }
+        .status-progress { background-color: rgb(100,70,10); color: #d4a870; }
+        .status-pending  { background-color: rgb(60,20,40);  color: #e08090; }
+
+        /* ── PROGRESS BARS ── */
+        .progress-section {
+            margin: 10px 20px 30px;
+            background-color: rgb(40, 60, 60);
+            border: 2px solid rgb(85, 13, 44);
+            padding: 24px;
+        }
+
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-bg {
+            background-color: rgb(30, 50, 50);
+            border: 1px solid rgb(85,13,44);
+            height: 18px;
+            width: 100%;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: rgb(85, 13, 44);
+            transition: width 1s ease;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            margin: 10px 20px 30px;
+            padding: 0;
+            list-style: none;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: rgb(85, 13, 44);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 0 0 24px 54px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 8px;
+            top: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 100%;
+            background-color: rgb(85, 13, 44);
+            border: 3px solid darkslategray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .timeline-content {
+            background-color: rgb(40, 60, 60);
+            border: 1px solid rgb(85,13,44);
+            padding: 14px 16px;
+        }
+
+        .timeline-content h4 {
+            color: white;
+            margin: 0 0 6px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content p {
+            color: rgba(255,255,255,0.65);
+            font-size: 13px;
+            margin: 0;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .timeline-date {
+            color: rgb(85, 13, 44);
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* ── SUCCESS MESSAGE ── */
+        .success-msg {
+            display: none;
+            background-color: rgb(20, 80, 50);
+            color: #7ecba0;
+            border: 1px solid #7ecba0;
+            padding: 12px 18px;
+            margin-top: 14px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background-image: url("bog.png");
+            text-align: center;
+        }
+
+        footer table { width: 100%; vertical-align: top; }
+        footer h3, footer h5 { color: white; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="member.html">Members</a></li>
+        <li><a href="story.html">Story</a></li>
+        <li><a href="chat.html">Chats</a></li>
+        <li><a href="plan.html">Plan</a></li>
+    </ul>
+
+    <!-- PAGE INTRO -->
+    <div class="page-intro">
+        <h1><b><i>The Life Style For Rwandans</i></b></h1>
+        <h3><i>Your Personal Plan</i></h3>
+        <p>Plan your life goals, track your progress, and share your journey with the Rwandan community. A good life starts with a good plan.</p>
+    </div>
+
+    <!-- PLAN CATEGORIES -->
+    <div class="section-title">Choose Your Plan Category</div>
+    <div class="cards-grid">
+
+        <div class="card">
+            <span class="card-icon">🎓</span>
+            <h3>Education Plan</h3>
+            <p>Plan your studies, courses, and academic goals. Education is the key to success in Rwanda and beyond.</p>
+            <div class="card-footer">
+                <span class="card-tag">Academic</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="card-icon">💼</span>
+            <h3>Business Plan</h3>
+            <p>Plan your business ideas, startup projects, and entrepreneurship goals that can help grow Rwanda's economy.</p>
+            <div class="card-footer">
+                <span class="card-tag">Entrepreneurship</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="card-icon">❤️</span>
+            <h3>Health Plan</h3>
+            <p>Plan your fitness, mental health, nutrition, and wellness goals for a healthy and happy life.</p>
+            <div class="card-footer">
+                <span class="card-tag">Wellness</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="card-icon">👨‍👩‍👧</span>
+            <h3>Family Plan</h3>
+            <p>Plan your family goals, values to pass on to your children, and the life you want to build together.</p>
+            <div class="card-footer">
+                <span class="card-tag">Family</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="card-icon">🌍</span>
+            <h3>Community Plan</h3>
+            <p>Plan how you will contribute to your community, your village, and the development of Rwanda.</p>
+            <div class="card-footer">
+                <span class="card-tag">Community</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="card-icon">💰</span>
+            <h3>Financial Plan</h3>
+            <p>Plan your savings, investments, and financial future. Build wealth and security for your family.</p>
+            <div class="card-footer">
+                <span class="card-tag">Finance</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ADD A PLAN FORM -->
+    <div class="section-title">Add Your Plan</div>
+    <div class="form-section">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Your Full Name</label>
+                <input type="text" placeholder="e.g. Mutesi Keza" />
+            </div>
+            <div class="form-group">
+                <label>Plan Title</label>
+                <input type="text" placeholder="e.g. Open a business in Kigali" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Category</label>
+                <select>
+                    <option value="">-- Select Category --</option>
+                    <option>Education Plan</option>
+                    <option>Business Plan</option>
+                    <option>Health Plan</option>
+                    <option>Family Plan</option>
+                    <option>Community Plan</option>
+                    <option>Financial Plan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Target Date</label>
+                <input type="date" />
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select>
+                    <option>Pending</option>
+                    <option>In Progress</option>
+                    <option>Done</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Describe Your Plan</label>
+                <textarea placeholder="Describe your plan in detail. What do you want to achieve? How will you do it?"></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>What Resources Do You Need?</label>
+                <textarea placeholder="e.g. Money, time, support from family, training..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Challenges You May Face</label>
+                <textarea placeholder="e.g. Lack of funds, no experience yet..."></textarea>
+            </div>
+        </div>
+        <button class="submit-btn" onclick="submitPlan()">Save My Plan</button>
+        <div class="success-msg" id="successMsg">
+            ✔ Your plan has been saved! Keep working hard — Rwanda is proud of you!
+        </div>
+    </div>
+
+    <!-- MY PLANS TABLE -->
+    <div class="section-title">My Plans Overview</div>
+    <div class="plans-table-wrap">
+        <table class="plans-table">
+            <tr>
+                <th>#</th>
+                <th>Plan Title</th>
+                <th>Category</th>
+                <th>Target Date</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Complete University Degree</td>
+                <td>Education</td>
+                <td>December 2025</td>
+                <td><span class="status-badge status-progress">In Progress</span></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Start a Small Business in Kigali</td>
+                <td>Business</td>
+                <td>June 2026</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Learn English Fluently</td>
+                <td>Education</td>
+                <td>March 2025</td>
+                <td><span class="status-badge status-done">Done</span></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Build a Family Home</td>
+                <td>Family</td>
+                <td>January 2027</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Save 500,000 RWF</td>
+                <td>Finance</td>
+                <td>December 2024</td>
+                <td><span class="status-badge status-done">Done</span></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Join Community Clean-Up Program</td>
+                <td>Community</td>
+                <td>Monthly</td>
+                <td><span class="status-badge status-progress">In Progress</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- PROGRESS BARS -->
+    <div class="section-title">My Progress Tracker</div>
+    <div class="progress-section">
+
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>University Degree</span>
+                <span>65%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 65%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>English Fluency</span>
+                <span>100%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 100%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Business Startup</span>
+                <span>20%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 20%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Family Home</span>
+                <span>10%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 10%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Savings Goal (500,000 RWF)</span>
+                <span>100%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 100%"></div>
+            </div>
+        </div>
+
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Community Program</span>
+                <span>50%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 50%"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="section-title">My Life Timeline</div>
+    <ul class="timeline">
+
+        <li class="timeline-item">
+            <div class="timeline-dot">1</div>
+            <div class="timeline-content">
+                <h4>Finished Secondary School</h4>
+                <p>Completed my secondary education with great results. Ready to take on the next challenge.</p>
+                <span class="timeline-date">2020</span>
+            </div>
+        </li>
+
+        <li class="timeline-item">
+            <div class="timeline-dot">2</div>
+            <div class="timeline-content">
+                <h4>Joined University</h4>
+                <p>Started studying at university in Kigali. Focused on building skills for Rwanda's future.</p>
+                <span class="timeline-date">2021</span>
+            </div>
+        </li>
+
+        <li class="timeline-item">
+            <div class="timeline-dot">3</div>
+            <div class="timeline-content">
+                <h4>Learned English Fluently</h4>
+                <p>Achieved full English fluency which opened many doors for career and personal growth.</p>
+                <span class="timeline-date">March 2025</span>
+            </div>
+        </li>
+
+        <li class="timeline-item">
+            <div class="timeline-dot">4</div>
+            <div class="timeline-content">
+                <h4>Complete University Degree</h4>
+                <p>Target to graduate and receive my university degree. A major milestone in my life plan.</p>
+                <span class="timeline-date">December 2025 — Target</span>
+            </div>
+        </li>
+
+        <li class="timeline-item">
+            <div class="timeline-dot">5</div>
+            <div class="timeline-content">
+                <h4>Launch My Business</h4>
+                <p>Plan to open a small business in Kigali and contribute to Rwanda's growing economy.</p>
+                <span class="timeline-date">June 2026 — Target</span>
+            </div>
+        </li>
+
+        <li class="timeline-item">
+            <div class="timeline-dot">6</div>
+            <div class="timeline-content">
+                <h4>Build Family Home</h4>
+                <p>Dream of building a home for my family. Hard work and consistency will make it happen.</p>
+                <span class="timeline-date">January 2027 — Target</span>
+            </div>
+        </li>
+
+    </ul>
+
+    <!-- FOOTER -->
+    <footer>
+        <table>
+            <tr>
+                <td>
+                    <h3>Top contents</h3>
+                    <h5>life style circle</h5>
+                    <h5>background for individual</h5>
+                    <h5>business plan project</h5>
+                    <h5>hobbies in daily life</h5>
+                    <h5>lesson learnt in struggle</h5>
+                    <h5>future wishes</h5>
+                    <h5>values</h5>
+                </td>
+                <td>
+                    <h3>Top members</h3>
+                    <h5>Elon mask</h5>
+                    <h5>Larry page</h5>
+                    <h5>sergery brin</h5>
+                    <h5>Jeff bezos</h5>
+                    <h5>Mark Zuckerberg</h5>
+                    <h5>Larry Ellison</h5>
+                    <h5>Bernard Arnault</h5>
+                </td>
+                <td>
+                    <h3>Social medias</h3>
+                    <h5>Whatsapp</h5>
+                    <h5>instagram</h5>
+                    <h5>twitter</h5>
+                    <h5>facebook</h5>
+                    <h5>email</h5>
+                    <h5>youtube</h5>
+                    <h5>linkedin</h5>
+                </td>
+            </tr>
+        </table>
+    </footer>
+
+<script>
+    function submitPlan() {
+        const inputs = document.querySelectorAll('.form-section input, .form-section select, .form-section textarea');
+        let filled = false;
+        inputs.forEach(i => { if (i.value.trim() !== '') filled = true; });
+
+        if (!filled) {
+            alert('Please fill in at least one field before saving your plan.');
+            return;
+        }
+
+        document.getElementById('successMsg').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('successMsg').style.display = 'none';
+        }, 4000);
+    }
+</script>
+
+</body>
+</html>
